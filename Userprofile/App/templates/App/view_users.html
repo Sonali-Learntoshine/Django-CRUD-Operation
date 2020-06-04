@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>List of Users</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <style>
+        .img-responsive {
+            display: block;
+            max-width: 20%;
+            height: auto;
+        }
+
+        table {
+            margin-top: 5%;
+            box-shadow: 0.5px 0.5px 5px 5px gray;
+        / / border: 1 px;
+        }
+
+        body {
+            background-color: #F0FFFF;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        tr:hover td {
+            background-color: lightcyan;
+        }
+
+        img {
+            border-radius: 50%;
+        }
+
+        body {
+            background-image: url("https://animal-wallpaper.com/wallpaper/keyboard-wallpaper-hd-For-Background-HD-Wallpaper.jpg");
+            background-repeat: no-repeat;
+        / / overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 align="center" style="font-family: Algerian; margin-top: 20px">List Of Students</h1>
+
+    <table class="table table-hover table-fixed">
+        <thead>
+        <tr style="background-color:#00FF7F">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Caption</th>
+            <th>Dob</th>
+            <th>Designation</th>
+            <th>Photo</th>
+         <th>Operations</th>
+         <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in users %}
+            <tr style="background-color:#FFFFFF;">
+                <td width="10%">{{ i.id }}</td>
+                <td width="10%"><a href="{{ i.id }}">{{ i.name }}</a></td>
+                <td width="20%"> {{ i.caption }}</td>
+                <td width="10%"> {{ i.dob }}</td>
+                <td width="15%"> {{ i.designation }}</td>
+                <td width="20%"><img class="img-responsive" src="{{ i.img.url }}"></td>
+                <td>
+                    <a href="{% url 'del_student' i.id %}"  style="position: absolute;right: 20%; " class="btn btn-danger">Delete</a></td>
+                <td>
+                    <a href="{% url 'update' i.id %}" style="position: absolute; right: 10%;" class="btn btn-success">Update</a></td>
+            </tr>
+        {% endfor %}
+
+        <a href="{% url 'add_student' %}" style="position: absolute; right: 25%;" class="btn btn-success">Add
+            Student</a>
+
+
+        </tbody>
+    </table>
+
+
+</div>
+
+</body>
+</html>
+
+{# <td><a class="btn btn-sm btn-danger" href="{% url 'del_student' obj.id %}">delete</a></td> #}
